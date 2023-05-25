@@ -1,5 +1,38 @@
-//add everything here
+plugins {
+    id('java-library')
+    id('maven-publish')
+}
 
+java {
+    sourceCompatibility = 11
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.epam.demo'
+            artifactId = 'Utils'
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
+dependencies {
+
+    implementation 'com.epam.utils:StringUtils:1.0'
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'Utils')
+    }
+}
 test {
     useJUnitPlatform()
 }
